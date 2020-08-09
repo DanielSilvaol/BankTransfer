@@ -1,4 +1,45 @@
 package com.work.cvc.transfer.Domain.Handler;
 
-public class TransferHandler {
+import com.work.cvc.transfer.Domain.Command.TransferCommand.Inputs.SaveTransferCommand;
+import com.work.cvc.transfer.Domain.Command.TransferCommand.Outputs.TransferTO;
+import com.work.cvc.transfer.Domain.Entity.Transfer;
+import com.work.cvc.transfer.Infra.Repository.ITransferRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class TransferHandler extends BaseHandler {
+
+    private final ITransferRepository _repository;
+
+    public TransferHandler(ITransferRepository _repository) {
+        this._repository = _repository;
+    }
+
+    public List<TransferTO> Handler() {
+        return TransferTO.Converter(_repository.findAll());
+    }
+
+    public TransferTO Handler(SaveTransferCommand command) {
+        if (!command.IsValid()) {
+            this.Notifications = command.Notifications;
+            return null;
+        }
+        Transfer transfer = new Transfer();
+
+        transfer.ConfigSave(
+                command.getSourceAccount(),
+                command.getTargetAccount(),
+                command.getTransferAmount(),
+                transfer.getEFee().getFee().calculateFee(transfer),
+                command.getTransferDate());
+
+
+
+        _repository.save(transfer);
+
+        return new TransferTO(transfer);
+    }
+
 }
