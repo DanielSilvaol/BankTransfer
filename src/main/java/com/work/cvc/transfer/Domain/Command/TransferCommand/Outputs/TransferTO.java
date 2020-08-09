@@ -3,6 +3,7 @@ package com.work.cvc.transfer.Domain.Command.TransferCommand.Outputs;
 import com.work.cvc.transfer.Domain.Entity.Transfer;
 import lombok.Getter;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 import java.util.Calendar;
 import java.util.List;
@@ -15,7 +16,7 @@ public class TransferTO {
     String targetAccount;
     double transferAmount;
     double fee;
-    DateTime transferDate;
+    LocalDate transferDate;
     DateTime schedulingDate;
 
     public TransferTO(Transfer transfer) {

@@ -5,6 +5,7 @@ import com.work.cvc.transfer.Domain.Command.TransferCommand.BaseCommand;
 import com.work.cvc.transfer.Domain.Config.Error.ValidationContract;
 import lombok.Getter;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 import java.util.Calendar;
 
@@ -15,7 +16,7 @@ public class SaveTransferCommand extends BaseCommand {
     String targetAccount = "XXXXXX";
     double transferAmount;
 
-    DateTime transferDate;
+    LocalDate transferDate;
 
     @Override
     public boolean IsValid() {
