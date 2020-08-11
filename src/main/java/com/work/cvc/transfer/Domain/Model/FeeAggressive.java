@@ -3,7 +3,6 @@ package com.work.cvc.transfer.Domain.Model;
 import com.work.cvc.transfer.Domain.Entity.Transfer;
 import com.work.cvc.transfer.Domain.Interface.IFeeRule;
 import org.joda.time.Days;
-import org.joda.time.Interval;
 
 public class FeeAggressive implements IFeeRule {
     @Override
@@ -13,13 +12,13 @@ public class FeeAggressive implements IFeeRule {
         if (days > 10 && days <= 20)
             return (transfer.getTransferAmount() * 0.08);
 
-        else if (days > 20 && days <= 30)
+        if (days > 20 && days <= 30)
             return (transfer.getTransferAmount() * 0.06);
 
-        else if (days > 30 && days <= 40)
+        if (days > 30 && days <= 40)
             return (transfer.getTransferAmount() * 0.04);
 
-        else if (days > 40 && transfer.getTransferAmount() > 100000)
+        if (days > 40 && transfer.getTransferAmount() > 100000)
             return (transfer.getTransferAmount() * 0.02);
 
         return 0;

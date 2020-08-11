@@ -1,11 +1,7 @@
 package com.work.cvc.transfer.Domain.Config.Error;
 
-import org.joda.time.DateTime;
 import org.joda.time.Days;
-import org.joda.time.Interval;
 import org.joda.time.LocalDate;
-
-import java.util.Calendar;
 
 public class ValidationContract extends Notifiable {
     private boolean IsNullOrEmpty(String attribute) {
@@ -34,7 +30,7 @@ public class ValidationContract extends Notifiable {
             LocalDate val,
             String property,
             String message) {
-        long days = Days.daysBetween(val, LocalDate.now()).getDays();
+        long days = Days.daysBetween(LocalDate.now(),val).getDays();
         if (days < 0)
             this.AddNotification(CreateNotification(property, message));
         return this;
