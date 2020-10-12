@@ -1,15 +1,13 @@
 package com.work.cvc.transfer.Domain.Entity;
 
-import com.work.cvc.transfer.Domain.Enum.EFee;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
-import javax.persistence.*;
-import java.util.Calendar;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Data
 @Entity

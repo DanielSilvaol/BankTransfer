@@ -2,7 +2,6 @@ package com.work.cvc.transfer.Api.Controller;
 
 import com.work.cvc.transfer.Domain.Command.TransferCommand.Inputs.SaveTransferCommand;
 import com.work.cvc.transfer.Domain.Handler.TransferHandler;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

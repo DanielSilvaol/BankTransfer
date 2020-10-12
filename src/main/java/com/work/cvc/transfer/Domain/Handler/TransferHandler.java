@@ -3,7 +3,7 @@ package com.work.cvc.transfer.Domain.Handler;
 import com.work.cvc.transfer.Domain.Command.TransferCommand.Inputs.SaveTransferCommand;
 import com.work.cvc.transfer.Domain.Command.TransferCommand.Outputs.TransferTO;
 import com.work.cvc.transfer.Domain.Entity.Transfer;
-import com.work.cvc.transfer.Domain.Enum.EFee;
+import com.work.cvc.transfer.Domain.Model.RateCalculator;
 import com.work.cvc.transfer.Infra.Repository.ITransferRepository;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +34,7 @@ public class TransferHandler extends BaseHandler {
                 command.getTargetAccount(),
                 command.getTransferAmount(),
                 command.getTransferDate());
-        double fee = EFee.getFee(transfer);
+        double fee = RateCalculator.Calculates(transfer);
 
         if(fee == 0){
             this.AddNotification(CreateNotification("Fee","Not applicable."));

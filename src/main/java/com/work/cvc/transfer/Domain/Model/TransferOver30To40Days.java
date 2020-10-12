@@ -3,15 +3,14 @@ package com.work.cvc.transfer.Domain.Model;
 import com.work.cvc.transfer.Domain.Entity.Transfer;
 import com.work.cvc.transfer.Domain.Interface.IRateRule;
 
-public class SameDayTransfer implements IRateRule {
+public class TransferOver30To40Days implements IRateRule {
     private IRateRule next;
     private long days;
 
     @Override
     public double CalculateRate(Transfer transfer) {
-        if(days == 0){
-            return 3 + (transfer.getTransferAmount() * 0.03);
-        }
+        if (days > 30 && days <= 40)
+            return (transfer.getTransferAmount() * 0.04);
         return next.CalculateRate(transfer);
     }
 
