@@ -19,7 +19,7 @@ public class Transfer {
     String sourceAccount = "XXXXXX";
     String targetAccount = "XXXXXX";
     double transferAmount;
-    double fee;
+    double rate;
     LocalDate transferDate;
     DateTime schedulingDate;
 

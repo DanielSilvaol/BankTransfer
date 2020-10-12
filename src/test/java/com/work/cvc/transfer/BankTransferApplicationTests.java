@@ -40,7 +40,7 @@ class BankTransferApplicationTests {
 
         TransferTO transferTO = _handler.Handler(command);
         Assertions.assertTrue(_handler.isValid());
-        Assertions.assertEquals(3.3, transferTO.getFee());
+        Assertions.assertEquals(3.3, transferTO.getRate());
         Assertions.assertNotEquals(null, transferTO);
     }
 
@@ -56,12 +56,12 @@ class BankTransferApplicationTests {
 
         TransferTO transferTO = _handler.Handler(command);
         Assertions.assertTrue(_handler.isValid());
-        Assertions.assertEquals(108, transferTO.getFee());
+        Assertions.assertEquals(108, transferTO.getRate());
         Assertions.assertNotEquals(null, transferTO);
     }
 
     @Test
-    void FeeAggressiveGreaterThan10AndLessThan20Test() {
+    void RateAggressiveGreaterThan10AndLessThan20Test() {
         _handler.ClearNotification();
         SaveTransferCommand command = new SaveTransferCommand();
 
@@ -72,12 +72,12 @@ class BankTransferApplicationTests {
 
         TransferTO transferTO = _handler.Handler(command);
         Assertions.assertTrue(_handler.isValid());
-        Assertions.assertEquals(0.8, transferTO.getFee());
+        Assertions.assertEquals(0.8, transferTO.getRate());
         Assertions.assertNotEquals(null, transferTO);
     }
 
     @Test
-    void FeeAggressiveGreaterThan20AndLessThan30Test() {
+    void RateAggressiveGreaterThan20AndLessThan30Test() {
         _handler.ClearNotification();
         SaveTransferCommand command = new SaveTransferCommand();
 
@@ -88,12 +88,12 @@ class BankTransferApplicationTests {
 
         TransferTO transferTO = _handler.Handler(command);
         Assertions.assertTrue(_handler.isValid());
-        Assertions.assertEquals(0.6, transferTO.getFee());
+        Assertions.assertEquals(0.6, transferTO.getRate());
         Assertions.assertNotEquals(null, transferTO);
     }
 
     @Test
-    void FeeAggressiveGreaterThan30AndLessThan40Test() {
+    void RateAggressiveGreaterThan30AndLessThan40Test() {
         _handler.ClearNotification();
         SaveTransferCommand command = new SaveTransferCommand();
 
@@ -104,12 +104,12 @@ class BankTransferApplicationTests {
 
         TransferTO transferTO = _handler.Handler(command);
         Assertions.assertTrue(_handler.isValid());
-        Assertions.assertEquals(0.4, transferTO.getFee());
+        Assertions.assertEquals(0.4, transferTO.getRate());
         Assertions.assertNotEquals(null, transferTO);
     }
 
     @Test
-    void FeeAggressiveGreaterThan40AndTransactionGreaterThan100000Test() {
+    void RateAggressiveGreaterThan40AndTransactionGreaterThan100000Test() {
         _handler.ClearNotification();
         SaveTransferCommand command = new SaveTransferCommand();
 
@@ -120,7 +120,7 @@ class BankTransferApplicationTests {
 
         TransferTO transferTO = _handler.Handler(command);
         Assertions.assertTrue(_handler.isValid());
-        Assertions.assertEquals(4000, transferTO.getFee());
+        Assertions.assertEquals(4000, transferTO.getRate());
         Assertions.assertNotEquals(null, transferTO);
     }
 
@@ -131,7 +131,7 @@ class BankTransferApplicationTests {
 
         command.setSourceAccount("XXXXXX");
         command.setTargetAccount("XXXXXX");
-        command.setTransferDate(LocalDate.fromDateFields(new Date("2019/09/31")));
+        command.setTransferDate(LocalDate.fromDateFields(new Date()));
 
         TransferTO transferTO = _handler.Handler(command);
         Assertions.assertFalse(_handler.isValid());

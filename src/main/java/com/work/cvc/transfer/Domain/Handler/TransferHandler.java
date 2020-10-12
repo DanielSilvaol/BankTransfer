@@ -34,14 +34,14 @@ public class TransferHandler extends BaseHandler {
                 command.getTargetAccount(),
                 command.getTransferAmount(),
                 command.getTransferDate());
-        double fee = RateCalculator.Calculates(transfer);
+        double rate = RateCalculator.Calculates(transfer);
 
-        if(fee == 0){
-            this.AddNotification(CreateNotification("Fee","Not applicable."));
+        if(rate == 0){
+            this.AddNotification(CreateNotification("Rate","Not applicable."));
             return null;
         }
 
-        transfer.setFee(fee);
+        transfer.setRate(rate);
         _repository.save(transfer);
 
         return new TransferTO(transfer);

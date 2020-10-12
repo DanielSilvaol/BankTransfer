@@ -14,7 +14,7 @@ public class TransferTO {
     String sourceAccount;
     String targetAccount;
     double transferAmount;
-    double fee;
+    double rate;
     LocalDate transferDate;
     DateTime schedulingDate;
 
@@ -22,7 +22,7 @@ public class TransferTO {
         this.sourceAccount = transfer.getSourceAccount();
         this.targetAccount = transfer.getTargetAccount();
         this.transferAmount = transfer.getTransferAmount();
-        this.fee = transfer.getFee();
+        this.rate = transfer.getRate();
         this.transferDate = transfer.getTransferDate();
         this.schedulingDate = transfer.getSchedulingDate();
     }

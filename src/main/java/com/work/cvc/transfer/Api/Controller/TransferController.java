@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/Transfer")
 public class TransferController extends BaseController{
 
-    private TransferHandler _handler;
+    private final TransferHandler _handler;
 
     @Autowired
     public TransferController(TransferHandler _handler) {

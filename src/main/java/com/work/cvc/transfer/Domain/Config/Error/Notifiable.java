@@ -1,13 +1,15 @@
 package com.work.cvc.transfer.Domain.Config.Error;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Notifiable {
-//    @ApiModelProperty(required = true, hidden=true)
+    @ApiModelProperty(required = true, hidden=true)
     public List<Notification> Notifications;
 
-//    @ApiModelProperty(required = true, hidden=true)
+    @ApiModelProperty(required = true, hidden=true)
     public boolean isValid() {
         return this.Notifications.isEmpty();
     }
