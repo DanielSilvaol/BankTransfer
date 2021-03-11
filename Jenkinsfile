@@ -29,7 +29,7 @@ pipeline {
 		stage("deploy") {
 			steps {
 				echo 'deploying the application...'
-				sh 'java -jar .\target\transfer-1.0.0-SNAPSHOT.jar'
+				sh 'java -jar ./target/transfer-1.0.0-SNAPSHOT.jar'
 			}
 		}
 	}
