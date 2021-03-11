@@ -16,7 +16,7 @@ pipeline {
 		stage("build") {
 			steps {
 				echo 'building the application...'
-				echo 'building the ...'
+				sh 'mvn clean install' 
 			}
 		}
 		
@@ -29,7 +29,7 @@ pipeline {
 		stage("deploy") {
 			steps {
 				echo 'deploying the application...'
-				 sh 'mvn clean install' 
+				sh 'java -jar .\target\transfer-1.0.0-SNAPSHOT.jar'
 			}
 		}
 	}
