@@ -18,6 +18,7 @@ pipeline {
 		stage("deploy") {
 			steps {
 				echo 'deploying the application...'
+				 sh 'mvn -B -DskipTests clean package' 
 			}
 		}
 	}
