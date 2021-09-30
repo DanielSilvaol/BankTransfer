@@ -1,8 +1,8 @@
 package com.work.cvc.transfer;
 
 import com.work.cvc.transfer.Domain.Command.TransferCommand.Inputs.SaveTransferCommand;
-import com.work.cvc.transfer.Domain.Command.TransferCommand.Outputs.TransferTO;
-import com.work.cvc.transfer.Domain.Handler.TransferHandler;
+import com.work.cvc.transfer.Domain.Command.TransferCommand.Outputs.TransferDTO;
+import com.work.cvc.transfer.Domain.Service.TransferService;
 import org.joda.time.LocalDate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,10 +17,10 @@ import java.util.Date;
 @WebAppConfiguration
 class BankTransferApplicationTests {
 
-    private final TransferHandler _handler;
+    private final TransferService _handler;
 
     @Autowired
-    public BankTransferApplicationTests(TransferHandler handler) {
+    public BankTransferApplicationTests(TransferService handler) {
         _handler = handler;
     }
 
@@ -38,10 +38,10 @@ class BankTransferApplicationTests {
         command.setTransferAmount(10);
         command.setTransferDate(LocalDate.now());
 
-        TransferTO transferTO = _handler.Handler(command);
+        TransferDTO transferDTO = _handler.saveTransfer(command);
         Assertions.assertTrue(_handler.isValid());
-        Assertions.assertEquals(3.3, transferTO.getRate());
-        Assertions.assertNotEquals(null, transferTO);
+        Assertions.assertEquals(3.3, transferDTO.getRate());
+        Assertions.assertNotEquals(null, transferDTO);
     }
 
     @Test
@@ -54,10 +54,10 @@ class BankTransferApplicationTests {
         command.setTransferAmount(10);
         command.setTransferDate(LocalDate.fromDateFields(new Date()).plusDays(9));
 
-        TransferTO transferTO = _handler.Handler(command);
+        TransferDTO transferDTO = _handler.saveTransfer(command);
         Assertions.assertTrue(_handler.isValid());
-        Assertions.assertEquals(108, transferTO.getRate());
-        Assertions.assertNotEquals(null, transferTO);
+        Assertions.assertEquals(108, transferDTO.getRate());
+        Assertions.assertNotEquals(null, transferDTO);
     }
 
     @Test
@@ -70,10 +70,10 @@ class BankTransferApplicationTests {
         command.setTransferAmount(10);
         command.setTransferDate(LocalDate.fromDateFields(new Date()).plusDays(19));
 
-        TransferTO transferTO = _handler.Handler(command);
+        TransferDTO transferDTO = _handler.saveTransfer(command);
         Assertions.assertTrue(_handler.isValid());
-        Assertions.assertEquals(0.8, transferTO.getRate());
-        Assertions.assertNotEquals(null, transferTO);
+        Assertions.assertEquals(0.8, transferDTO.getRate());
+        Assertions.assertNotEquals(null, transferDTO);
     }
 
     @Test
@@ -86,10 +86,10 @@ class BankTransferApplicationTests {
         command.setTransferAmount(10);
         command.setTransferDate(LocalDate.fromDateFields(new Date()).plusDays(29));
 
-        TransferTO transferTO = _handler.Handler(command);
+        TransferDTO transferDTO = _handler.saveTransfer(command);
         Assertions.assertTrue(_handler.isValid());
-        Assertions.assertEquals(0.6, transferTO.getRate());
-        Assertions.assertNotEquals(null, transferTO);
+        Assertions.assertEquals(0.6, transferDTO.getRate());
+        Assertions.assertNotEquals(null, transferDTO);
     }
 
     @Test
@@ -102,10 +102,10 @@ class BankTransferApplicationTests {
         command.setTransferAmount(10);
         command.setTransferDate(LocalDate.fromDateFields(new Date()).plusDays(39));
 
-        TransferTO transferTO = _handler.Handler(command);
+        TransferDTO transferDTO = _handler.saveTransfer(command);
         Assertions.assertTrue(_handler.isValid());
-        Assertions.assertEquals(0.4, transferTO.getRate());
-        Assertions.assertNotEquals(null, transferTO);
+        Assertions.assertEquals(0.4, transferDTO.getRate());
+        Assertions.assertNotEquals(null, transferDTO);
     }
 
     @Test
@@ -118,10 +118,10 @@ class BankTransferApplicationTests {
         command.setTransferAmount(200000);
         command.setTransferDate(LocalDate.fromDateFields(new Date()).plusDays(50));
 
-        TransferTO transferTO = _handler.Handler(command);
+        TransferDTO transferDTO = _handler.saveTransfer(command);
         Assertions.assertTrue(_handler.isValid());
-        Assertions.assertEquals(4000, transferTO.getRate());
-        Assertions.assertNotEquals(null, transferTO);
+        Assertions.assertEquals(4000, transferDTO.getRate());
+        Assertions.assertNotEquals(null, transferDTO);
     }
 
     @Test
@@ -133,8 +133,8 @@ class BankTransferApplicationTests {
         command.setTargetAccount("XXXXXX");
         command.setTransferDate(LocalDate.fromDateFields(new Date()));
 
-        TransferTO transferTO = _handler.Handler(command);
+        TransferDTO transferDTO = _handler.saveTransfer(command);
         Assertions.assertFalse(_handler.isValid());
-        Assertions.assertNull(transferTO);
+        Assertions.assertNull(transferDTO);
     }
 }

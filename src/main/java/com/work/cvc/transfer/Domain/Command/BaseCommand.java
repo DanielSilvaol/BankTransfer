@@ -1,7 +1,7 @@
-package com.work.cvc.transfer.Domain.Command.TransferCommand;
+package com.work.cvc.transfer.Domain.Command;
 
 
-import com.work.cvc.transfer.Domain.Config.Error.Notifiable;
+import com.work.cvc.transfer.Api.Config.Error.Notifiable;
 
 public abstract class BaseCommand extends Notifiable {
 

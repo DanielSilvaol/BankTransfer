@@ -1,7 +1,7 @@
 package com.work.cvc.transfer.Api.Controller;
 
 import com.work.cvc.transfer.Domain.Command.TransferCommand.Inputs.SaveTransferCommand;
-import com.work.cvc.transfer.Domain.Handler.TransferHandler;
+import com.work.cvc.transfer.Domain.Service.TransferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,22 +11,22 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/Transfer")
 public class TransferController extends BaseController{
 
-    private final TransferHandler _handler;
+    private final TransferService _handler;
 
     @Autowired
-    public TransferController(TransferHandler _handler) {
+    public TransferController(TransferService _handler) {
         super(_handler);
         this._handler = _handler;
     }
 
-    @GetMapping("/Schedules")
-    public ResponseEntity<?> Get(){
-        return Response(_handler.Handler());
+    @GetMapping("/schedules")
+    public ResponseEntity<?> getSchedules(){
+        return Response(_handler.getSchedules());
     }
 
-    @PostMapping("/Save")
-    public ResponseEntity<?> Post(@RequestBody SaveTransferCommand command){
-        return Response(_handler.Handler(command));
+    @PostMapping("/saveTransfer")
+    public ResponseEntity<?> saveTransfer(@RequestBody SaveTransferCommand command){
+        return Response(_handler.saveTransfer(command));
     }
 
 }

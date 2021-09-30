@@ -1,4 +1,4 @@
-package com.work.cvc.transfer.Domain.Config.Swagger;
+package com.work.cvc.transfer.Api.Config.Swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

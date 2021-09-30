@@ -1,4 +1,4 @@
-package com.work.cvc.transfer.Domain.Config.Error;
+package com.work.cvc.transfer.Api.Config.Error;
 
 import org.joda.time.Days;
 import org.joda.time.LocalDate;

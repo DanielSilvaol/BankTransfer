@@ -1,7 +1,7 @@
-package com.work.cvc.transfer.Domain.Handler;
+package com.work.cvc.transfer.Domain.Service;
 
 import com.work.cvc.transfer.Domain.Command.TransferCommand.Inputs.SaveTransferCommand;
-import com.work.cvc.transfer.Domain.Command.TransferCommand.Outputs.TransferTO;
+import com.work.cvc.transfer.Domain.Command.TransferCommand.Outputs.TransferDTO;
 import com.work.cvc.transfer.Domain.Entity.Transfer;
 import com.work.cvc.transfer.Domain.Model.RateCalculator;
 import com.work.cvc.transfer.Infra.Repository.ITransferRepository;
@@ -10,30 +10,27 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TransferHandler extends BaseHandler {
+public class TransferService extends BaseService {
 
     private final ITransferRepository _repository;
 
-    public TransferHandler(ITransferRepository _repository) {
+    public TransferService(ITransferRepository _repository) {
         this._repository = _repository;
     }
 
-    public List<TransferTO> Handler() {
-        return TransferTO.Converter(_repository.findAll());
+    public List<TransferDTO> getSchedules() {
+        return TransferDTO.Converter(_repository.findAll());
     }
 
-    public TransferTO Handler(SaveTransferCommand command) {
+    public TransferDTO saveTransfer(SaveTransferCommand command) {
         if (!command.IsValid()) {
             this.Notifications = command.Notifications;
             return null;
         }
         Transfer transfer = new Transfer();
 
-        transfer.ConfigSave(
-                command.getSourceAccount(),
-                command.getTargetAccount(),
-                command.getTransferAmount(),
-                command.getTransferDate());
+        transfer.configSave(command.getSourceAccount(), command.getTargetAccount(), command.getTransferAmount(), command.getTransferDate());
+
         double rate = RateCalculator.Calculates(transfer);
 
         if(rate == 0){
@@ -44,7 +41,7 @@ public class TransferHandler extends BaseHandler {
         transfer.setRate(rate);
         _repository.save(transfer);
 
-        return new TransferTO(transfer);
+        return new TransferDTO(transfer);
     }
 
 }

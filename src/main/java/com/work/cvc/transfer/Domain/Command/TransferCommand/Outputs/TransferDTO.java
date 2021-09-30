@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
-public class TransferTO {
+public class TransferDTO {
 
     String sourceAccount;
     String targetAccount;
@@ -18,7 +18,7 @@ public class TransferTO {
     LocalDate transferDate;
     DateTime schedulingDate;
 
-    public TransferTO(Transfer transfer) {
+    public TransferDTO(Transfer transfer) {
         this.sourceAccount = transfer.getSourceAccount();
         this.targetAccount = transfer.getTargetAccount();
         this.transferAmount = transfer.getTransferAmount();
@@ -27,7 +27,7 @@ public class TransferTO {
         this.schedulingDate = transfer.getSchedulingDate();
     }
 
-    public static List<TransferTO> Converter(List<Transfer> transfers){
-        return transfers.stream().map(TransferTO::new).collect(Collectors.toList());
+    public static List<TransferDTO> Converter(List<Transfer> transfers){
+        return transfers.stream().map(TransferDTO::new).collect(Collectors.toList());
     }
 }

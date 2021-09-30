@@ -15,19 +15,15 @@ public class Transfer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    String sourceAccount = "XXXXXX";
-    String targetAccount = "XXXXXX";
-    double transferAmount;
-    double rate;
-    LocalDate transferDate;
-    DateTime schedulingDate;
+    private int id;
+    private String sourceAccount = "XXXXXX";
+    private String targetAccount = "XXXXXX";
+    private double transferAmount;
+    private double rate;
+    private LocalDate transferDate;
+    private DateTime schedulingDate;
 
-    public void ConfigSave(String sourceAccount,
-                           String targetAccount,
-                           double transferAmount,
-                           LocalDate transferDate) {
-
+    public void configSave(String sourceAccount, String targetAccount, double transferAmount, LocalDate transferDate) {
         this.sourceAccount = sourceAccount;
         this.targetAccount = targetAccount;
         this.transferAmount = transferAmount;

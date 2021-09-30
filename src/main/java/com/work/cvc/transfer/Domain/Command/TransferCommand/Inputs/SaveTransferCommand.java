@@ -1,7 +1,7 @@
 package com.work.cvc.transfer.Domain.Command.TransferCommand.Inputs;
 
-import com.work.cvc.transfer.Domain.Command.TransferCommand.BaseCommand;
-import com.work.cvc.transfer.Domain.Config.Error.ValidationContract;
+import com.work.cvc.transfer.Domain.Command.BaseCommand;
+import com.work.cvc.transfer.Api.Config.Error.ValidationContract;
 import lombok.Getter;
 import lombok.Setter;
 import org.joda.time.LocalDate;
