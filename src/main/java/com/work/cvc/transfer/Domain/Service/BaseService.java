@@ -8,7 +8,7 @@ import lombok.Getter;
 import java.util.List;
 
 @Getter
-public  class BaseService extends Notifiable implements IService {
+public abstract class BaseService extends Notifiable implements IService {
     protected BaseService(){
     }
 

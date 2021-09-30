@@ -11,22 +11,20 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/Transfer")
 public class TransferController extends BaseController{
 
-    private final TransferService _handler;
+    private final TransferService _service;
 
     @Autowired
-    public TransferController(TransferService _handler) {
-        super(_handler);
-        this._handler = _handler;
+    public TransferController(TransferService _service) {
+        super(_service);
+        this._service = _service;
     }
 
     @GetMapping("/schedules")
     public ResponseEntity<?> getSchedules(){
-        return Response(_handler.getSchedules());
+        return Response(_service.getSchedules());
     }
 
     @PostMapping("/saveTransfer")
-    public ResponseEntity<?> saveTransfer(@RequestBody SaveTransferCommand command){
-        return Response(_handler.saveTransfer(command));
-    }
+    public ResponseEntity<?> saveTransfer(@RequestBody SaveTransferCommand command){ return Response(_service.saveTransfer(command)); }
 
 }
